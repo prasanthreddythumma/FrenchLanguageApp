@@ -7,7 +7,7 @@
     tools:context=".AssessmentActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/answerThree"
         android:layout_width="386dp"
         android:layout_height="47dp"
         android:ems="10"
@@ -117,7 +117,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/answerTwo"
         android:layout_width="386dp"
         android:layout_height="47dp"
         android:ems="10"

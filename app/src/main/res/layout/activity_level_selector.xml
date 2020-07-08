@@ -7,7 +7,7 @@
     tools:context=".LevelSelectorActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnBeginner"
         android:layout_width="358dp"
         android:layout_height="56dp"
         android:background="#03A9F4"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.156" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAdvanced"
         android:layout_width="358dp"
         android:layout_height="56dp"
         android:background="#03A9F4"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnIntermediate "
         android:layout_width="358dp"
         android:layout_height="56dp"
         android:background="#03A9F4"
