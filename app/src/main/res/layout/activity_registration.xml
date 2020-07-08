@@ -45,7 +45,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName"
+                            android:id="@+id/firstName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -82,7 +82,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName2"
+                            android:id="@+id/lastName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -126,12 +126,12 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/editTextTextPersonName3"
+                            android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:hint="Email Id"
-                            android:inputType="textPersonName" />
+                            android:inputType="textEmailAddress" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -163,7 +163,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/editTextTextPassword"
+                            android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -207,7 +207,7 @@
                         android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/editTextPhone"
+                            android:id="@+id/phoneNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"

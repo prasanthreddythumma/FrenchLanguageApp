@@ -45,12 +45,12 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/userName"
+                            android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
-                            android:hint="user Id"
-                            android:inputType="textPersonName"
+                            android:hint="email"
+                            android:inputType="textEmailAddress"
                              />
                     </LinearLayout>
 
@@ -128,7 +128,7 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/button3"
+                            android:id="@+id/btnLogin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#00BCD4"
@@ -165,7 +165,7 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/register"
+                            android:id="@+id/btnRegister"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#00BCD4"
