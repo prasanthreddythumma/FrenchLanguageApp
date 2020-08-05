@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black_wood"
+    tools:context=".SelectFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="Before we start, lets select the French language level you are cofortable in"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:gravity="center_horizontal" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/selectLevel"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="60dp"
+                >
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lvl_1"
+                    android:text="Beginner"
+                    android:buttonTint="@color/colorBlackish"
+                    android:checked="true"
+                    android:textSize="25sp" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorBlackish"
+                    android:id="@+id/lvl_2"
+                    android:text="Intermediate"
+                    android:textSize="25sp" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:buttonTint="@color/colorBlackish"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lvl_3"
+                    android:text="Advanced"
+                    android:textSize="25sp" />
+            </RadioGroup>
+            <Button
+
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_lvl"
+                android:background="@drawable/btn_style"
+                android:layout_below="@+id/selectLevel"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:text="NEXT"
+                android:textSize="20sp"
+                android:layout_marginTop="120dp"
+                />
+
+            <TextView
+                android:id="@+id/txt_assess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/btn_lvl"
+                android:text="Get Assessed instead"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="50dp"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:layout_marginRight="50dp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
