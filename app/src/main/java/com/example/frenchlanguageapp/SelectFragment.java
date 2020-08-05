@@ -62,11 +62,8 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
         if (id == R.id.btn_lvl) {
         }
         else if(id == R.id.txt_assess){
-            Fragment assessFragment = new AssessFragment();
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.nav_host_fragment, assessFragment ); // give your fragment container id in first parameter
-            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-            transaction.commit();
+            navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+            navController.navigate(R.id.assessFragment);
         }
     }
 }

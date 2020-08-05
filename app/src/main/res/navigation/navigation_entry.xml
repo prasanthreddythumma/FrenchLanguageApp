@@ -25,5 +25,10 @@
         android:name="com.example.frenchlanguageapp.SelectFragment"
         android:label="Select"
         tools:layout="@layout/fragment_select"/>
+    <fragment
+        android:id="@+id/assessFragment"
+        android:name="com.example.frenchlanguageapp.AssessFragment"
+        android:label="Assess"
+        tools:layout="@layout/fragment_assess"/>
 
 </navigation>
