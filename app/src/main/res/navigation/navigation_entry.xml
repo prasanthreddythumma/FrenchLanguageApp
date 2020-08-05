@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_entry"
+    app:startDestination="@id/openFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.frenchlanguageapp.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login"/>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.frenchlanguageapp.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register"/>
+    <fragment
+        android:id="@+id/openFragment"
+        android:name="com.example.frenchlanguageapp.OpenFragment"
+        android:label="Start"
+        tools:layout="@layout/fragment_open"/>
+    <fragment
+        android:id="@+id/selectFragment"
+        android:name="com.example.frenchlanguageapp.SelectFragment"
+        android:label="Select"
+        tools:layout="@layout/fragment_select"/>
+
+</navigation>
