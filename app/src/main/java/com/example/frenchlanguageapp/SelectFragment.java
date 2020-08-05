@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,8 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
     public NavController navController;
     private FirebaseFirestore db;
     private int a;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
     public SelectFragment() {
         // Required empty public constructor
@@ -59,7 +63,21 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
 
+        int rb_id =radioGroup.getCheckedRadioButtonId();
+        radioButton = view.findViewById(rb_id);
         if (id == R.id.btn_lvl) {
+            if(rb_id == R.id.lvl_1){
+                navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                navController.navigate(R.id.beginnersFragment);
+            }
+            else if(rb_id == R.id.lvl_2){
+                navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                navController.navigate(R.id.intermediateFragment);
+            }
+            else if(rb_id == R.id.lvl_3){
+                navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                navController.navigate(R.id.advancedFragment);
+            }
         }
         else if(id == R.id.txt_assess){
             navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
