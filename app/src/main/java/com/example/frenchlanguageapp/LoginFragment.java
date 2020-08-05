@@ -127,13 +127,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                             if(a>0&&a<4){
                                 Toast.makeText(getActivity().getApplicationContext(),"Login Success!",Toast.LENGTH_LONG).show();
                                 if(a ==1){
-                                    Toast.makeText(getActivity().getApplicationContext(),"Beginners!",Toast.LENGTH_LONG).show();
+                                    navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                                    navController.navigate(R.id.beginnersFragment);
                                 }
                                 else if(a==2){
-                                    Toast.makeText(getActivity().getApplicationContext(),"Intermediate!",Toast.LENGTH_LONG).show();
+                                    navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                                    navController.navigate(R.id.intermediateFragment);
                                 }
                                 else if(a == 3){
-                                    Toast.makeText(getActivity().getApplicationContext(),"Advanced!",Toast.LENGTH_LONG).show();
+                                    navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                                    navController.navigate(R.id.advancedFragment);
                                 }
                             }else{
                                 navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
