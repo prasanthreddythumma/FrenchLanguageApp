@@ -30,5 +30,20 @@
         android:name="com.example.frenchlanguageapp.AssessFragment"
         android:label="Assess"
         tools:layout="@layout/fragment_assess"/>
+    <fragment
+        android:id="@+id/beginnersFragment"
+        android:name="com.example.frenchlanguageapp.BeginnersFragment"
+        android:label="Beginner"
+        tools:layout="@layout/fragment_beginners"/>
+    <fragment
+        android:id="@+id/intermediateFragment"
+        android:name="com.example.frenchlanguageapp.IntermediateFragment"
+        android:label="Intermediate"
+        tools:layout="@layout/fragment_intermediate"/>
+    <fragment
+        android:id="@+id/advancedFragment"
+        android:name="com.example.frenchlanguageapp.AdvancedFragment"
+        android:label="Advanced"
+        tools:layout="@layout/fragment_advanced"/>
 
 </navigation>
