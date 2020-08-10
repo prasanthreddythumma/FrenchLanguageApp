@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AssessFragment extends Fragment   {
     TextView Question;
     RadioButton b1, b2, b3, b4;
+    NavController navController;
     int total = 0;
     int count = 0;
     DatabaseReference reference;
@@ -50,154 +53,182 @@ public class AssessFragment extends Fragment   {
     }
 
     private void updateQuestion() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Questions");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(total>snapshot.getChildrenCount()){
+                    Toast.makeText(getActivity().getApplicationContext(),"Your score is:"+ count,Toast.LENGTH_SHORT).show();
+                    if(count <= 4){
+                        Toast.makeText(getActivity().getApplicationContext(),"Your are A Beginner",Toast.LENGTH_SHORT).show();
+                        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                        navController.navigate(R.id.beginnersFragment);
 
-        if(total>10){
+                    }
+                    else if(count<=7 && count>4){
+                        Toast.makeText(getActivity().getApplicationContext(),"Your are Intermediate",Toast.LENGTH_SHORT).show();
+                        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                        navController.navigate(R.id.intermediateFragment);
 
-        }
-        else {
-            reference = FirebaseDatabase.getInstance().getReference().child("Questions").child(String.valueOf(total));
-            reference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    final Assessment assessment = snapshot.getValue(Assessment.class);
-                    Question.setText(assessment.getQuestion());
-                    b1.setText(assessment.getOption1());
-                    b2.setText(assessment.getOption2());
-                    b3.setText(assessment.getOption3());
-                    b4.setText(assessment.getOption4());
-
-                    b1.setOnClickListener(new View.OnClickListener() {
+                    }
+                    else{
+                        Toast.makeText(getActivity().getApplicationContext(),"Your are Advanced",Toast.LENGTH_SHORT).show();
+                        navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
+                        navController.navigate(R.id.advancedFragment);
+                    }
+                }
+                else {
+                    reference = FirebaseDatabase.getInstance().getReference().child("Questions").child(String.valueOf(total));
+                    reference.addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onClick(View view) {
-                            total++;
+                        public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                            final Assessment assessment = datasnapshot.getValue(Assessment.class);
+                            Question.setText(assessment.getQuestion());
+                            b1.setText(assessment.getOption1());
+                            b2.setText(assessment.getOption2());
+                            b3.setText(assessment.getOption3());
+                            b4.setText(assessment.getOption4());
+                            final String answer = assessment.getAnswer();
+                            b1.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    total++;
 
-                            if(b1.getText().toString().equals(assessment.getAnswer())){
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        count++;
-                                        updateQuestion();
+                                    if(b1.getText().toString().equals(answer)){
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                count++;
+                                                updateQuestion();
+                                            }
+                                        },1500);
                                     }
-                                },1500);
-                            }
 
-                            else {
-                                Toast.makeText(getActivity().getApplicationContext(),"Incorrect",Toast.LENGTH_SHORT).show();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        updateQuestion();
+                                    else {
+                                        Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                updateQuestion();
+                                            }
+                                        },1500);
+
                                     }
-                                },1500);
+                                    b1.setChecked(false);
+                                }
+                            });
 
-                            }
-                            b1.setChecked(false);
+                            b2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    total++;
+                                    if(b2.getText().toString().equals(answer)){
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                count++;
+                                                updateQuestion();
+                                            }
+                                        },1500);
+                                    }
+
+                                    else {
+                                        Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                updateQuestion();
+                                            }
+                                        },1500);
+
+                                    }
+                                    b2.setChecked(false);
+                                }
+                            });
+
+                            b3.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    total++;
+                                    if(b3.getText().toString().equals(answer)){
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                count++;
+                                                updateQuestion();
+                                            }
+                                        },1500);
+                                    }
+
+                                    else {
+                                        Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                updateQuestion();
+                                            }
+                                        },1500);
+
+                                    }
+                                    b3.setChecked(false);
+                                }
+                            });
+
+                            b4.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    total++;
+                                    if(b4.getText().toString().equals(answer)){
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                count++;
+                                                updateQuestion();
+                                            }
+                                        },1500);
+                                    }
+
+                                    else {
+                                        Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                updateQuestion();
+                                            }
+                                        },1500);
+
+                                    }
+                                    b4.setChecked(false);
+                                }
+                            });
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+
                         }
                     });
-
-                    b2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            total++;
-                            if(b2.getText().toString().equals(assessment.getAnswer())){
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        count++;
-                                        updateQuestion();
-                                    }
-                                },1500);
-                            }
-
-                            else {
-                                Toast.makeText(getActivity().getApplicationContext(),"Incorrect",Toast.LENGTH_SHORT).show();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        updateQuestion();
-                                    }
-                                },1500);
-
-                            }
-                            b2.setChecked(false);
-                        }
-                    });
-
-                    b3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            total++;
-                            if(b3.getText().toString().equals(assessment.getAnswer())){
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        count++;
-                                        updateQuestion();
-                                    }
-                                },1500);
-                            }
-
-                            else {
-                                Toast.makeText(getActivity().getApplicationContext(),"Incorrect",Toast.LENGTH_SHORT).show();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        updateQuestion();
-                                    }
-                                },1500);
-
-                            }
-                            b3.setChecked(false);
-                        }
-                    });
-
-                    b4.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            total++;
-                            if(b4.getText().toString().equals(assessment.getAnswer())){
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        count++;
-                                        updateQuestion();
-                                    }
-                                },1500);
-                            }
-
-                            else {
-                                Toast.makeText(getActivity().getApplicationContext(),"Incorrect",Toast.LENGTH_SHORT).show();
-                                Handler handler = new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        updateQuestion();
-                                    }
-                                },1500);
-
-                            }
-                            b4.setChecked(false);
-                        }
-                    });
-
 
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
 
-                }
-            });
-
-        }
 
     }
 
