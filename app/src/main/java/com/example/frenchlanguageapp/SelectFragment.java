@@ -31,6 +31,7 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
     private int a;
     RadioGroup radioGroup;
     RadioButton radioButton;
+    int rb_id;
 
     public SelectFragment() {
         // Required empty public constructor
@@ -55,6 +56,9 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         Button btn_Select = view.findViewById(R.id.btn_lvl);
         TextView txt_assess = view.findViewById(R.id.txt_assess);
+        radioGroup = view.findViewById(R.id.selectLevel);
+        rb_id =radioGroup.getCheckedRadioButtonId();
+        radioButton = view.findViewById(rb_id);
         txt_assess.setOnClickListener(this);
         btn_Select.setOnClickListener(this);
     }
@@ -63,8 +67,6 @@ public class SelectFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
 
-        int rb_id =radioGroup.getCheckedRadioButtonId();
-        radioButton = view.findViewById(rb_id);
         if (id == R.id.btn_lvl) {
             if(rb_id == R.id.lvl_1){
                 navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
