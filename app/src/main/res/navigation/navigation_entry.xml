@@ -21,6 +21,11 @@
         android:label="Start"
         tools:layout="@layout/fragment_open"/>
     <fragment
+        android:id="@+id/numbersFragment"
+        android:name="com.example.frenchlanguageapp.NumbersFragment"
+        android:label="Numbers"
+        tools:layout="@layout/fragment_numbers"/>
+    <fragment
         android:id="@+id/selectFragment"
         android:name="com.example.frenchlanguageapp.SelectFragment"
         android:label="Select"
@@ -45,5 +50,15 @@
         android:name="com.example.frenchlanguageapp.AdvancedFragment"
         android:label="Advanced"
         tools:layout="@layout/fragment_advanced"/>
+    <fragment
+        android:id="@+id/wordsFragment"
+        android:name="com.example.frenchlanguageapp.WordsFragment"
+        android:label="Words"
+        tools:layout="@layout/fragment_words"/>
+    <fragment
+        android:id="@+id/beginnerQuizFragment"
+        android:name="com.example.frenchlanguageapp.BeginnerQuizFragment"
+        android:label="Beginner Quiz"
+        tools:layout="@layout/fragment_beginner_quiz"/>
 
 </navigation>
