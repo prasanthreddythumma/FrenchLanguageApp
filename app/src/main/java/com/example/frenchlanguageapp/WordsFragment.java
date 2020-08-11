@@ -2,57 +2,109 @@ package com.example.frenchlanguageapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link WordsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class WordsFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    TextView girl,boy,woman,man,love,please,time,day,world,strong;
+    TextView girlE,boyE,womanE,manE,loveE,pleaseE,timeE,dayE,worldE,strongE;
+    DatabaseReference reference;
     public WordsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment WordsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static WordsFragment newInstance(String param1, String param2) {
-        WordsFragment fragment = new WordsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        girl = view.findViewById(R.id.girlF);
+        boy = view.findViewById(R.id.boyF);
+        woman = view.findViewById(R.id.womanF);
+        man = view.findViewById(R.id.manF);
+        love = view.findViewById(R.id.loveF);
+        please = view.findViewById(R.id.pleaseF);
+        time = view.findViewById(R.id.timeF);
+        day = view.findViewById(R.id.dayF);
+        world = view.findViewById(R.id.worldF);
+        strong = view.findViewById(R.id.strongF);
+
+        girlE = view.findViewById(R.id.girlE);
+        boyE = view.findViewById(R.id.boyE);
+        womanE = view.findViewById(R.id.womanE);
+        manE = view.findViewById(R.id.manE);
+        loveE = view.findViewById(R.id.loveE);
+        pleaseE = view.findViewById(R.id.pleaseE);
+        timeE = view.findViewById(R.id.timeE);
+        dayE = view.findViewById(R.id.dayE);
+        worldE = view.findViewById(R.id.worldE);
+        strongE = view.findViewById(R.id.strongE);
+
+        getWords();
+    }
+
+    private void getWords() {
+        reference = FirebaseDatabase.getInstance().getReference().child("Words");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                final Words words = snapshot.getValue(Words.class);
+
+                girl.setText(words.getGirl());
+                girlE.setText("Girl");
+
+                boy.setText(words.getBoy());
+                boyE.setText("Boy");
+
+                woman.setText(words.getWoman());
+                womanE.setText("Woman");
+
+                man.setText(words.getMan());
+                manE.setText("Man");
+
+                love.setText(words.getLove());
+                loveE.setText("Love");
+
+                please.setText(words.getPlease());
+                pleaseE.setText("Please");
+
+                time.setText(words.getTime());
+                timeE.setText("Time");
+
+                day.setText(words.getDay());
+                dayE.setText("Day");
+
+                world.setText(words.getWorld());
+                worldE.setText("World");
+
+                strong.setText(words.getStrong());
+                strongE.setText("Strong");
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
