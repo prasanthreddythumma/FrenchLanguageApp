@@ -21,6 +21,22 @@
         android:label="Start"
         tools:layout="@layout/fragment_open"/>
     <fragment
+        android:id="@+id/monthsFragment"
+        android:name="com.example.frenchlanguageapp.MonthsFragment"
+        android:label="Months"
+        tools:layout="@layout/fragment_months"/>
+    <fragment
+        android:id="@+id/daysFragment"
+        android:name="com.example.frenchlanguageapp.DaysFragment"
+        android:label="Days"
+        tools:layout="@layout/fragment_days"/>
+    <fragment
+        android:id="@+id/colorsFragment"
+        android:name="com.example.frenchlanguageapp.ColorsFragment"
+        android:label="Colors"
+        tools:layout="@layout/fragment_colors"/>
+
+    <fragment
         android:id="@+id/numbersFragment"
         android:name="com.example.frenchlanguageapp.NumbersFragment"
         android:label="Numbers"
@@ -60,5 +76,12 @@
         android:name="com.example.frenchlanguageapp.BeginnerQuizFragment"
         android:label="Beginner Quiz"
         tools:layout="@layout/fragment_beginner_quiz"/>
+
+    <fragment
+        android:id="@+id/intermediateQuizFragment"
+        android:name="com.example.frenchlanguageapp.IntermediateQuizFragment"
+        android:label="Intermediate Quiz"
+        tools:layout="@layout/fragment_intermediate_quiz"/>
+
 
 </navigation>
