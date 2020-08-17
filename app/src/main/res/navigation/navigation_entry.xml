@@ -82,6 +82,15 @@
         android:name="com.example.frenchlanguageapp.IntermediateQuizFragment"
         android:label="Intermediate Quiz"
         tools:layout="@layout/fragment_intermediate_quiz"/>
-
+    <fragment
+        android:id="@+id/advancedQuizFragment"
+        android:name="com.example.frenchlanguageapp.AdvancedQuizFragment"
+        android:label="Advanced Quiz"
+        tools:layout="@layout/fragment_advanced_quiz"/>
+    <fragment
+        android:id="@+id/phrasesFragment"
+        android:name="com.example.frenchlanguageapp.PhrasesFragment"
+        android:label="Phrases"
+        tools:layout="@layout/fragment_phrases"/>
 
 </navigation>
