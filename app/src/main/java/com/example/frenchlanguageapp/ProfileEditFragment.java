@@ -75,20 +75,19 @@ public class ProfileEditFragment extends Fragment implements View.OnClickListene
 
         if(id == R.id.btnSave){
             if(!firstName.getText().toString().trim().matches("")){
-                users.setFirstName(firstName.getText().toString().trim());
+                reference.child("User").child(user.getUid()).child("firstName").setValue(firstName.getText().toString().trim());
             }
             if(!lastName.getText().toString().trim().matches("")){
-                users.setLastName(lastName.getText().toString().trim());
+                reference.child("User").child(user.getUid()).child("lastName").setValue(lastName.getText().toString().trim());
             }
             if(!email.getText().toString().trim().matches("")){
-                users.setEMail(email.getText().toString().trim());
+                reference.child("User").child(user.getUid()).child("email").setValue(email.getText().toString().trim());
                 auth.getCurrentUser().updateEmail(email.getText().toString().trim());
             }
             if(!phoneNo.getText().toString().trim().matches("")){
-                users.setPhoneNumber(phoneNo.getText().toString().trim());
+                reference.child("User").child(user.getUid()).child("phoneNumber").setValue(phoneNo.getText().toString().trim());
             }
 
-            reference.child("User").child(user.getUid()).setValue(users);
 
             navController= Navigation.findNavController(getActivity(),R.id.nav_profile_fragment);
             navController.navigate(R.id.viewFragment);
