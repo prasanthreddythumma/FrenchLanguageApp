@@ -13,12 +13,15 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
+        android:id="@+id/cardView"
         app:cardCornerRadius="40dp"
         app:cardElevation="2dp">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
 
             <TextView
                 android:id="@+id/textView"
@@ -27,72 +30,84 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
+                android:gravity="center_horizontal"
                 android:text="Before we start, lets select the French language level you are cofortable in"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:gravity="center_horizontal" />
+                android:textSize="20sp" />
+
             <RadioGroup
+                android:id="@+id/selectLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/selectLevel"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/textView"
-                android:layout_marginTop="60dp"
-                >
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp">
+
                 <RadioButton
+                    android:id="@+id/lvl_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/lvl_1"
-                    android:text="Beginner"
                     android:buttonTint="@color/colorBlackish"
                     android:checked="true"
+                    android:text="Beginner"
                     android:textSize="25sp" />
+
                 <RadioButton
+                    android:id="@+id/lvl_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/colorBlackish"
-                    android:id="@+id/lvl_2"
                     android:text="Intermediate"
                     android:textSize="25sp" />
+
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:buttonTint="@color/colorBlackish"
-                    android:layout_height="wrap_content"
                     android:id="@+id/lvl_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorBlackish"
                     android:text="Advanced"
                     android:textSize="25sp" />
             </RadioGroup>
+
             <Button
 
+                android:id="@+id/btn_lvl"
                 android:layout_width="145dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_lvl"
-                android:background="@drawable/btn_style"
                 android:layout_below="@+id/selectLevel"
                 android:layout_centerHorizontal="true"
-                android:textColor="#FFFFFF"
-                android:text="NEXT"
-                android:textSize="20sp"
                 android:layout_marginTop="120dp"
-                />
+                android:background="@drawable/btn_style"
+                android:text="NEXT"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/txt_assess"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_width="256dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/btn_lvl"
-                android:text="Get Assessed instead"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginRight="35dp"
+                android:text="Get Assessed instead"
                 android:textColor="#000000"
-                android:textSize="25sp"
-                android:layout_marginRight="50dp" />
+                android:textSize="25sp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/btn_profile"
+                android:layout_below="@id/txt_assess"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/profile"
+                android:backgroundTint="#000000"/>
+
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
 
 </RelativeLayout>
