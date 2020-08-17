@@ -25,6 +25,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -38,6 +40,8 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
     String fName,lName,email,pass,phone;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    DatabaseReference reference;
+    Users users;
     public RegisterFragment() {
         // Required empty public constructor
     }
@@ -62,12 +66,14 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        reference = FirebaseDatabase.getInstance().getReference().child("User");
         btn_reg=view.findViewById(R.id.btn_registration);
         txt_login=view.findViewById(R.id.txt_regLogin);
         edt_fName=view.findViewById(R.id.reg_fname);
         edt_lName=view.findViewById(R.id.reg_lname);
         edt_email=view.findViewById(R.id.reg_email);
         edt_pass=view.findViewById(R.id.reg_pass);
+        users = new Users();
         edt_phone = view.findViewById(R.id.reg_mobile);
         btn_reg.setOnClickListener(this);
         txt_login.setOnClickListener(this);
@@ -164,8 +170,15 @@ public class RegisterFragment extends Fragment  implements View.OnClickListener{
                     usermap.put("First Name",fName);
                     usermap.put("Last Name",lName);
                     usermap.put("Email",email);
+                    users.setFirstName(edt_fName.getText().toString().trim());
+                    users.setLastName(edt_lName.getText().toString().trim());
+                    users.setEMail(edt_email.getText().toString().trim());
+                    users.setPassword(edt_pass.getText().toString().trim());
+                    users.setPhoneNumber(edt_phone.getText().toString().trim());
+                    reference.child(user.getUid()).setValue(users);
                     int a=0;
                     usermap.put("Level",a);
+
                     db.collection("Users").document(user.getUid()).set(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
