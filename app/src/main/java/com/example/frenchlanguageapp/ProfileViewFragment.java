@@ -1,64 +1,104 @@
 package com.example.frenchlanguageapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileViewFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProfileViewFragment extends Fragment {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.HashMap;
+import java.util.Map;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
+public class ProfileViewFragment extends Fragment implements View.OnClickListener{
+    FirebaseAuth auth;
+    DatabaseReference reference;
+    TextView firstName, lastName, fullName, email, phoneNo;
+    Button edit,logout;
+    NavController navController;
 
     public ProfileViewFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileViewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileViewFragment newInstance(String param1, String param2) {
-        ProfileViewFragment fragment = new ProfileViewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        auth = FirebaseAuth.getInstance();
+        firstName = view.findViewById(R.id.firstName);
+        lastName =  view.findViewById(R.id.lastName);
+        fullName =  view.findViewById(R.id.fullName);
+        email =  view.findViewById(R.id.email);
+        phoneNo =  view.findViewById(R.id.phone);
+        edit =view.findViewById(R.id.btnEdit);
+        logout = view.findViewById(R.id.btnLogout);
+        reference = FirebaseDatabase.getInstance().getReference();
+
+
+        reference.child("User").child(auth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Users users = snapshot.getValue(Users.class);
+                firstName.setText(users.getFirstName().toString());
+                lastName.setText(users.getLastName().toString());
+                email.setText(users.getEMail().toString());
+                phoneNo.setText("+1 "+users.getPhoneNumber());
+                fullName.setText(firstName.getText()+" "+lastName.getText());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        edit.setOnClickListener(this);
+        logout.setOnClickListener(this);
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_view, container, false);
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+
+        if(id == R.id.btnEdit){
+            navController= Navigation.findNavController(getActivity(),R.id.nav_profile_fragment);
+            navController.navigate(R.id.editFragment);
+        }
+        else if(id == R.id.btnLogout){
+            auth.signOut();
+            startActivity(new Intent(getActivity(),MainActivity.class));
+
+        }
     }
 }
