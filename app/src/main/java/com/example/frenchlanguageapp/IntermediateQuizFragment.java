@@ -56,10 +56,10 @@ public class IntermediateQuizFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(),"Total correct: "+count,Toast.LENGTH_SHORT).show();
                     if(count >= (snapshot.getChildrenCount()-2)){
                         navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                        navController.navigate(R.id.intermediateFragment);
+                        navController.navigate(R.id.advancedFragment);
                     }else {
                         navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
-                        navController.navigate(R.id.beginnersFragment);
+                        navController.navigate(R.id.intermediateFragment);
                     }
                 }
                 else {
