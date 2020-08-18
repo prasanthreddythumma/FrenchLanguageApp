@@ -121,16 +121,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 if (task.isSuccessful()) {
                     int x = a;
                     curUser = auth.getCurrentUser();
-                    readData(new FirestoreCallback() {
-                        @Override
-                        public void onClickback(DocumentSnapshot documentSnapshot) {
 
-                            navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                            Toast.makeText(getActivity().getApplicationContext(), "First select the level", Toast.LENGTH_LONG).show();
-                            navController.navigate(R.id.selectFragment);
+                    navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                    Toast.makeText(getActivity().getApplicationContext(), "First select the level", Toast.LENGTH_LONG).show();
+                    navController.navigate(R.id.selectFragment);
 
-                        }
-                    });
                 }else {
                     try {
                         throw task.getException();
