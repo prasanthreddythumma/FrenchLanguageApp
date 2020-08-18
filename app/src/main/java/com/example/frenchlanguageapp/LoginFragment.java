@@ -119,30 +119,19 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    int x = a;
                     curUser = auth.getCurrentUser();
                     readData(new FirestoreCallback() {
                         @Override
                         public void onClickback(DocumentSnapshot documentSnapshot) {
-                            if (a > 0 && a < 4) {
-                                Toast.makeText(getActivity().getApplicationContext(), "Login Success!", Toast.LENGTH_LONG).show();
-                                if (a == 1) {
-                                    navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                                    navController.navigate(R.id.beginnersFragment);
-                                } else if (a == 2) {
-                                    navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                                    navController.navigate(R.id.intermediateFragment);
-                                } else if (a == 3) {
-                                    navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                                    navController.navigate(R.id.advancedFragment);
-                                }
-                            } else {
-                                navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
-                                Toast.makeText(getActivity().getApplicationContext(), "First select the level", Toast.LENGTH_LONG).show();
-                                navController.navigate(R.id.selectFragment);
-                            }
+
+                            navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                            Toast.makeText(getActivity().getApplicationContext(), "First select the level", Toast.LENGTH_LONG).show();
+                            navController.navigate(R.id.selectFragment);
+
                         }
                     });
-                } else {
+                }else {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthInvalidUserException e) {
