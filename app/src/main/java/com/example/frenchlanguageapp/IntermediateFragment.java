@@ -9,15 +9,19 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class IntermediateFragment extends Fragment implements View.OnClickListener {
     NavController navController;
     CardView months,colors,days;
     TextView quiz;
+    TextView daysText, monthsText,colorsText,search;
     public IntermediateFragment() {
         // Required empty public constructor
     }
@@ -29,12 +33,59 @@ public class IntermediateFragment extends Fragment implements View.OnClickListen
         months = view.findViewById(R.id.monthsCard);
         colors = view.findViewById(R.id.colorsCard);
         days = view.findViewById(R.id.daysCard);
-
+        daysText = view.findViewById(R.id.daysCardText);
+        monthsText = view.findViewById(R.id.monthsCardText);
+        colorsText = view.findViewById(R.id.colorsCardText);
+        search = view.findViewById(R.id.searchIn);
         quiz = view.findViewById(R.id.text_action_bottom1);
         months.setOnClickListener(this);
         colors.setOnClickListener(this);
         days.setOnClickListener(this);
         quiz.setOnClickListener(this);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                searchInt(editable.toString());
+            }
+        });
+    }
+
+    private void searchInt(String s) {
+        String day = daysText.getText().toString().trim().toLowerCase();
+        String month = monthsText.getText().toString().trim().toLowerCase();
+        String color = colorsText.getText().toString().trim().toLowerCase();
+        if (s.isEmpty()) {
+            days.setVisibility(View.VISIBLE);
+            months.setVisibility(View.VISIBLE);
+            colors.setVisibility(View.VISIBLE);
+        } else if (day.contains(s.toLowerCase())) {
+            days.setVisibility(View.VISIBLE);
+            months.setVisibility(View.GONE);
+            colors.setVisibility(View.GONE);
+        } else if (month.contains(s.toLowerCase())) {
+            days.setVisibility(View.GONE);
+            months.setVisibility(View.VISIBLE);
+            colors.setVisibility(View.GONE);
+        } else if (color.contains(s.toLowerCase())) {
+            days.setVisibility(View.GONE);
+            months.setVisibility(View.GONE);
+            colors.setVisibility(View.VISIBLE);
+        } else {
+            days.setVisibility(View.GONE);
+            months.setVisibility(View.GONE);
+            colors.setVisibility(View.GONE);
+        }
     }
 
     @Override
