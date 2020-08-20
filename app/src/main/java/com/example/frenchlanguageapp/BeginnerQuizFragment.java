@@ -1,5 +1,6 @@
 package com.example.frenchlanguageapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,10 @@ public class BeginnerQuizFragment extends Fragment {
     }
 
     private void updateQuestion() {
+        b1.setTextColor(Color.rgb(0,0,0));
+        b2.setTextColor(Color.rgb(0,0,0));
+        b3.setTextColor(Color.rgb(0,0,0));
+        b4.setTextColor(Color.rgb(0,0,0));
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Beginners_Quiz");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,6 +93,7 @@ public class BeginnerQuizFragment extends Fragment {
                                     total++;
 
                                     if(b1.getText().toString().equals(answer)){
+                                        b1.setTextColor(Color.rgb(0,255,0));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
@@ -99,6 +105,7 @@ public class BeginnerQuizFragment extends Fragment {
                                     }
 
                                     else {
+                                        b1.setTextColor(Color.rgb(255,0,0));
                                         Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
@@ -118,6 +125,7 @@ public class BeginnerQuizFragment extends Fragment {
                                 public void onClick(View view) {
                                     total++;
                                     if(b2.getText().toString().equals(answer)){
+                                        b2.setTextColor(Color.rgb(0,255,0));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
@@ -129,6 +137,7 @@ public class BeginnerQuizFragment extends Fragment {
                                     }
 
                                     else {
+                                        b2.setTextColor(Color.rgb(255,0,0));
                                         Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
@@ -148,6 +157,7 @@ public class BeginnerQuizFragment extends Fragment {
                                 public void onClick(View view) {
                                     total++;
                                     if(b3.getText().toString().equals(answer)){
+                                        b3.setTextColor(Color.rgb(0,255,0));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
@@ -159,6 +169,7 @@ public class BeginnerQuizFragment extends Fragment {
                                     }
 
                                     else {
+                                        b3.setTextColor(Color.rgb(255,0,0));
                                         Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
@@ -178,6 +189,7 @@ public class BeginnerQuizFragment extends Fragment {
                                 public void onClick(View view) {
                                     total++;
                                     if(b4.getText().toString().equals(answer)){
+                                        b4.setTextColor(Color.rgb(0,255,0));
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
                                             @Override
@@ -189,6 +201,7 @@ public class BeginnerQuizFragment extends Fragment {
                                     }
 
                                     else {
+                                        b4.setTextColor(Color.rgb(255,0,0));
                                         Toast.makeText(getActivity().getApplicationContext(),"Right Answer: "+answer,Toast.LENGTH_SHORT).show();
                                         Handler handler = new Handler();
                                         handler.postDelayed(new Runnable() {
